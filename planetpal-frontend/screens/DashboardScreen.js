@@ -9,10 +9,10 @@ const DashboardScreen = ({ navigation }) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerStyle: {
-        backgroundColor: '#3D550C', // Set the desired color for the header
+        backgroundColor: '#3D550C',
       },
-      headerTintColor: '#fff', // Set the text color in the header
-      
+      headerTintColor: '#fff', 
+
     });
   }, [navigation]);
   return (
@@ -27,7 +27,6 @@ const DashboardScreen = ({ navigation }) => {
           <Button 
             mode = 'outlined'
             style = {{backgroundColor: 'black'}}
-            // color = 'black'
             onPress={() => Alert.alert("Test")}
            >PressMe</Button>
         </Card.Actions>
