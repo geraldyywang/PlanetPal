@@ -25,11 +25,11 @@
 //   },
 // };
 
+import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, Text, View } from 'react-native';
 import { PaperProvider, DefaultTheme } from 'react-native-paper';
-import { createStackNavigator } from 'react-navigation-stack'; // Import createStackNavigator
 import AppNavigator from './AppNavigator';
 import SplashScreen from './Screens/SplashScreen';
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Card, Title, Paragraph, Button } from 'react-native-paper';
+// import {TrashIcon} from 'react-native-heroicons/mini'
 
 const ProfileScreen = () => {
   return (
@@ -12,6 +13,7 @@ const ProfileScreen = () => {
         </Card.Content>
         <Card.Actions>
           <Button>Open Bin</Button>
+
         </Card.Actions>
       </Card>
 
