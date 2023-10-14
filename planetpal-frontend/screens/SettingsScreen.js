@@ -2,7 +2,16 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Card, Title, Paragraph, Button } from 'react-native-paper';
 
-const ProfileScreen = () => {
+const ProfileScreen = ({ navigation }) => {
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerStyle: {
+        backgroundColor: '#3D550C',
+      },
+      headerTintColor: '#fff', 
+
+    });
+  }, [navigation]);
   return (
     <View style={styles.container}>
         <ProfileCard />
@@ -43,6 +52,7 @@ const ProfileCard = () => {
   
   const styles = StyleSheet.create({
     container: {
+      backgroundColor: '#81B622',
       flex: 1,
       padding: 16,
       justifyContent: 'center',
