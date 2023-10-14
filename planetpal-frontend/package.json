@@ -18,6 +18,8 @@
     "@react-navigation/native": "^6.1.8",
     "@react-navigation/stack": "^6.3.18",
     "expo": "~49.0.13",
+    "expo-camera": "~13.4.4",
+    "expo-file-system": "~15.4.4",
     "expo-status-bar": "~1.6.0",
     "metro": "^0.79.1",
     "metro-core": "^0.79.1",

@@ -5,6 +5,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import DashboardScreen from './Screens/DashboardScreen';
 import ProfileScreen from './Screens/ProfileScreen';
 import SettingsScreen from './Screens/SettingsScreen';
+import ProductClassificationScreen from './Screens/ProductClassificationScreen'
+
+import Icons from 'react-native-heroicons/mini'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -12,16 +17,19 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-      tabBarOptions={{
+      screenOptions={{
           activeTintColor: 'black', // Color of the selected tab label
           inactiveTintColor: 'gray', // Color of the inactive tab label
-          // barStyle: { backgroundColor: '#3D550C' }, // Background color of the entire tab bar
-          // backgroundColor: '#3D550C'
         }}>
-        <Tab.Screen name="Dashboard" component={DashboardScreen} />
+        <Tab.Screen name="Dashboard" component={DashboardScreen} options={{tabBarLabel: 'Dashboard', tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="home" color={color} size={size} />),  }}/>
         {/* <Tab.Screen name="Recycle" /> */}
-        <Tab.Screen name="Settings" component={SettingsScreen} />
-        <Tab.Screen name="Profile" component={ProfileScreen} />
+        {/* <Tab.Screen name="Settings" component={SettingsScreen} options={{tabBarLabel: 'Settings', tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="cog" color={color} size={size} />),  }}/> */}
+        <Tab.Screen name="Profile" component={ProfileScreen} options={{tabBarLabel: 'Profile', tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="account" color={color} size={size} />),  }}/>
+        <Tab.Screen name="Camera" component={ProductClassificationScreen} options={{tabBarLabel: 'Camera', tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="camera" color={color} size={size} />),  }}/>
       </Tab.Navigator>
     </NavigationContainer>
   );

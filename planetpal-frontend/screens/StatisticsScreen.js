@@ -17,12 +17,6 @@ const DashboardScreen = ({ navigation }) => {
   }, [navigation]);
   return (
     <View style={styles.container}>
-      {/* <Text>test</Text> */}
-      {/* <View style={styles.progressBar}></View> */}
-
-      {/* <View> style={styles.bar}</View> */}
-
-      
       <Card>
         <Card.Content>
           {/* <TrashOutline size={24}/> */}
@@ -67,16 +61,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   button: {
-    // textAlign: 'center',
-    // color: 'black',
-  },
-  bar: {
-    height: 50,
-    width: '100%',
-    backgroundColor: 'blue',
-    borderColor: '#000',
-    borderWidth: 2,
-    borderRadius: 5
+    textAlign: 'center',
+    color: 'black',
   }
 });
 
