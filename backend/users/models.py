@@ -10,10 +10,8 @@ class User(models.Model):
     username = models.CharField(max_length=150, unique=True)
     password = models.CharField(max_length=250)
     points = models.IntegerField(default=0)
-    badges = models.ListField(
-        models.CharField(max_length=100),
-        default=[]
-    )
+    badges = models.CharField(max_length=500)
+    
 
 
     def set_password(self, password):
