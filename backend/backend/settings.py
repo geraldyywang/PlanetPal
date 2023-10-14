@@ -82,7 +82,8 @@ DATABASES = {
         # "NAME": BASE_DIR / "db.sqlite3",
         "ENGINE": "djongo",
         "NAME":"PlanetPal",
-        "CLIENT":{"host":"localhost"}
+        "CLIENT":{"host":"mongodb+srv://markestiller:ZUEnLvAD9klfyMpX@cluster0.niippsz.mongodb.net/"},
+        # "ENFORCE_SCHEMA": False
     }
 }
 
