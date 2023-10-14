@@ -31,6 +31,7 @@ import { SafeAreaView, Text, View } from 'react-native';
 import { PaperProvider, DefaultTheme } from 'react-native-paper';
 import { createStackNavigator } from 'react-navigation-stack'; // Import createStackNavigator
 import AppNavigator from './AppNavigator';
+import SplashScreen from './Screens/SplashScreen';
 
 const recyclingTheme = {
   ...DefaultTheme,
@@ -42,9 +43,22 @@ const recyclingTheme = {
 };
 
 export default function App() {
+
+
+  const [isAppReady, setAppReady] = React.useState(false);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setAppReady(true);
+    }, 3000);
+
+  }, []);
+
+  
   return (
     <PaperProvider theme={recyclingTheme}>
-      <AppNavigator />
+      {isAppReady ? (
+      <AppNavigator />): <SplashScreen/>}
     </PaperProvider>
   );
 }
