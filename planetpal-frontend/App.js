@@ -1,11 +1,55 @@
-import { StatusBar } from "expo-status-bar";
-import { Text, View } from "react-native";
+// import { Paper } from "@mui/material";
+// import { StatusBar } from "expo-status-bar";
+// import { SafeAreaView, Text, View } from "react-native";
+// import { PaperProvider, DefaultTheme } from "react-native-paper";
+// import AppNavigator from "./AppNavigator";
+// import { createStackNavigator } from 'react-navigation-stack';
+
+
+
+// export default function App() {
+//   return (
+//     <PaperProvider theme={recyclingTheme}>
+//       {/* <AppNavigator /> */}
+//     </PaperProvider>
+//   );
+// }
+
+
+// const recyclingTheme = {
+//   ...DefaultTheme,
+//   colors: {
+//     ...DefaultTheme.colors,
+//     primary: '#4CAF50', // green color for recycling theme
+//     accent: '#FFC107', // yellow color for recycling theme
+//   },
+// };
+
+import React from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { SafeAreaView, Text, View } from 'react-native';
+import { PaperProvider, DefaultTheme } from 'react-native-paper';
+import { createStackNavigator } from 'react-navigation-stack'; // Import createStackNavigator
+import AppNavigator from './AppNavigator';
+
+const recyclingTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#4CAF50', // green color for recycling theme
+    accent: '#FFC107', // yellow color for recycling theme
+  },
+};
 
 export default function App() {
   return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <PaperProvider theme={recyclingTheme}>
+      <AppNavigator />
+    </PaperProvider>
   );
 }
+
+
+
+
+
