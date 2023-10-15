@@ -28,9 +28,9 @@ Since this was our first time ever training a machine learning model, we initial
 
 For some of our team members, this project marked their first experience with React Native and Flask. This added another layer of complexity to the development process as they were learning and adapting to these technologies on the fly. 
 
-
-
 ## 🏆 Accomplishments that we're proud of 🏆
+
+Despite our team's limited experience in mobile app development, we are proud to have successfully created a functional and aesthetically pleasing UI.
 
 ## 🤓 What we learned 🤓
 
