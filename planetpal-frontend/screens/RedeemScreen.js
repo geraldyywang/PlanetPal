@@ -23,7 +23,7 @@ const DashboardScreen = ({ navigation }) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerStyle: {
-        backgroundColor: "#3D550C",
+        backgroundColor: "#81B622",
       },
       headerTintColor: "#fff",
     });
@@ -245,37 +245,40 @@ const DashboardScreen = ({ navigation }) => {
       <View style={styles.columns}>
         <Card style={styles.card}>
           <Card.Content>
+          <Text style={styles.cardParagraph}>100 Tokens</Text>
             <Button
               style={{ fontSize: 30, color: "black" }}
               // styleDisabled={{color: 'red'}}
               onPress={handlePress199}
               title="$1.99"
             ></Button>
-            <Text style={styles.cardParagraph}>100 Tokens</Text>
+            
           </Card.Content>
         </Card>
 
         <Card style={styles.card}>
           <Card.Content>
+          <Text style={styles.cardParagraph}>200 Tokens</Text>
             <Button
               style={{ fontSize: 30, color: "black" }}
               // styleDisabled={{color: 'red'}}
               onPress={handlePress499}
               title="$4.99"
             ></Button>
-            <Text style={styles.cardParagraph}>200 Tokens</Text>
+            
           </Card.Content>
         </Card>
 
         <Card style={styles.card}>
           <Card.Content>
+          <Text style={styles.cardParagraph}>400 Tokens</Text>
             <Button
               style={{ fontSize: 30, color: "black" }}
               // styleDisabled={{color: 'red'}}
               onPress={handlePress899}
               title="$8.99"
             ></Button>
-            <Text style={styles.cardParagraph}>400 Tokens</Text>
+           
           </Card.Content>
         </Card>
       </View>
@@ -283,37 +286,40 @@ const DashboardScreen = ({ navigation }) => {
       <View style={styles.columns}>
         <Card style={styles.card}>
           <Card.Content>
+          <Text style={styles.cardParagraph}>150 Tokens</Text>
             <Button
               style={{ fontSize: 30, color: "black" }}
               // styleDisabled={{color: 'red'}}
               onPress={handlePress399}
               title="$3.99"
             ></Button>
-            <Text style={styles.cardParagraph}>150 Tokens</Text>
+            
           </Card.Content>
         </Card>
 
         <Card style={styles.card}>
           <Card.Content>
+          <Text style={styles.cardParagraph}>300 Tokens</Text>
             <Button
               style={{ fontSize: 30, color: "black" }}
               // styleDisabled={{color: 'red'}}
               onPress={handlePress699}
               title="$6.99"
             ></Button>
-            <Text style={styles.cardParagraph}>300 Tokens</Text>
+            
           </Card.Content>
         </Card>
 
         <Card style={styles.card}>
           <Card.Content>
+          <Text style={styles.cardParagraph}>500 Tokens</Text>
             <Button
               style={{ fontSize: 30, color: "black" }}
               // styleDisabled={{color: 'red'}}
               onPress={handlePress1099}
               title="$10.99"
             ></Button>
-            <Text style={styles.cardParagraph}>500 Tokens</Text>
+            
           </Card.Content>
         </Card>
       </View>
@@ -324,7 +330,7 @@ const DashboardScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#81B622",
+    // backgroundColor: "#81B622",
     flex: 1,
     padding: 16,
     justifyContent: "center",
@@ -345,9 +351,10 @@ const styles = StyleSheet.create({
   },
   card: {
     maxHeight: 500,
-    width: Dimensions.get("window").width * 0.4,
+    width: 150,
+    height: 150,
     backgroundColor: "#fff",
-    marginBottom: 40,
+    marginBottom: 20,
     borderRadius: 15,
     shadowColor: "#000",
     shadowOffset: {
@@ -358,6 +365,8 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 5,
     marginHorizontal: 15,
+    justifyContent: "center",
+
   },
   cardTitle: {
     fontSize: 30,
@@ -372,6 +381,8 @@ const styles = StyleSheet.create({
   cardParagraph: {
     textAlign: "center",
     marginBottom: 6,
+    fontWeight: "bold",
+    fontSize: 24
   },
 });
 

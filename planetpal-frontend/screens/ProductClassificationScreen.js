@@ -1,5 +1,5 @@
 import {StatusBar} from 'expo-status-bar'
-import React from 'react'
+import React, { useEffect } from 'react'
 import {StyleSheet, Text, View, TouchableOpacity, Alert, ImageBackground, Image} from 'react-native'
 import {Camera} from 'expo-camera'
 // import * as FileSystem from 'expo-file-system';
@@ -14,10 +14,13 @@ export default function App({ navigation }) {
   const [capturedImage, setCapturedImage] = React.useState(null)
   const [cameraType, setCameraType] = React.useState(Camera.Constants.Type.back)
   const [flashMode, setFlashMode] = React.useState('off')
+  const [cohereGenerated, setCohereGenerated] = React.useState('')
+
+  
 
   navigation.setOptions({
     headerStyle: {
-      backgroundColor: '#3D550C', // Set your desired green color
+      backgroundColor: "#81B622", // Set your desired green color
     },
     headerTintColor: '#fff',
   });
@@ -50,7 +53,7 @@ export default function App({ navigation }) {
       });
   
       try {
-        const response = await axios.post('/', formData, {
+        const response = await axios.post('http://100.101.129.99:5000/predict', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -58,6 +61,16 @@ export default function App({ navigation }) {
   
         // Handle the response from the backend as needed
         console.log('Backend response:', response.data);
+        setCohereGenerated(response.cohere.generations[0].text)
+        Alert.alert(
+          'Practice proper recycling!',
+          {cohereGenerated},
+          [
+            { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+            { text: 'OK', onPress: () => console.log('OK Pressed') },
+          ],
+        )
+
       } catch (error) {
         // Handle errors
         console.error('Error sending photo to the backend:', error.message);

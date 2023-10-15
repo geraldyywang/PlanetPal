@@ -11,7 +11,32 @@ import {
 } from "react-native-paper";
 
 const DashboardScreen = ({ navigation }) => {
-  const [currentProgress, setCurrentProgress] = useState(0);
+  const [currentProgress, setCurrentProgress] = useState(0.0);
+  const [currentNumRecycled, setCurrentNumRecycled] = useState(0);
+  const [tokens, setTokens] = useState(0.0);
+
+  useEffect(() => {
+    fetch("http://100.101.129.99:5000/user/progress").then((response) => {
+      return response.json();
+    })
+    .then((resdata) => {
+      setCurrentProgress(resdata.progress);
+    });
+
+    fetch("http://100.101.129.99:5000/user/getrecycled").then((response) => {
+      return response.json();
+    })
+    .then((resdata) => {
+      setCurrentNumRecycled(resdata[recycled-count]);
+    });
+
+    fetch("http://100.101.129.99:5000/user/gettokens").then((response) => {
+      return response.json();
+    })
+    .then((resdata) => {
+      setTokens(resdata.tokens);
+    });
+  }, [])
 
   const badges = [
     {
@@ -38,7 +63,7 @@ const DashboardScreen = ({ navigation }) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerStyle: {
-        backgroundColor: "#3D550C",
+        backgroundColor: "#81B622",
       },
       headerTintColor: "#fff",
     });
@@ -46,27 +71,34 @@ const DashboardScreen = ({ navigation }) => {
 
   // useEffect(() => {
   //   fetch("backend_api/users/progress").then((response)=>{response.json()}).then((data)=>setCurrentProgress(currentProgress + data.progress))
-  // })
+  // },[])
 
   return (
     <View style={styles.container}>
       <Card style={styles.card}>
         <Card.Content>
-          <Title style={styles.cardTitle}>
-            <Text style={{ color: "#3D550C" }}>Green</Text> Tokens
-          </Title>
-          <Title style={styles.progressTitle}>Green Challenge Progress</Title>
-          <Text style={styles.cardParagraph}>October 2023</Text>
-          
-          <ProgressBar
+        <Title style={styles.progressTitle}>Challenge Progress</Title>
+        <Text style={styles.cardParagraph}>October 2023</Text>
+        <ProgressBar
             animatedValue={currentProgress}
             color="#81b622"
             visible={true}
             style={styles.progressBar}
-          />
+        />
+
+
+          <Title style={styles.progressTitle}>
+            Green Tokens
+          </Title>
+          <Text style={styles.cardTParagraph}>{tokens} ©</Text>
+          
+          
           {/* <Paragraph style={styles.cardParagraph}>
             WALLALALAa
           </Paragraph> */}
+          
+          <Title style={styles.progressTitle}>Items Recycled</Title>
+          <Text style={styles.cardTParagraph}>{currentNumRecycled}</Text>
         </Card.Content>
       </Card>
       <Card style={styles.card}>
@@ -108,7 +140,7 @@ const DashboardScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#81B622",
+    // backgroundColor: "#81B622",
     flex: 1,
     padding: 16,
     justifyContent: "center",
@@ -118,12 +150,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: 30,
     marginBottom: 10,
+    borderRadius: 20
   },
   card: {
     maxHeight: 500,
-    width: Dimensions.get("window").width * 0.8,
+    width: 360,
     backgroundColor: "#fff",
-    marginBottom: 40,
+    marginBottom: 10,
+    marginTop: 10,
     borderRadius: 15,
     shadowColor: "#000",
     shadowOffset: {
@@ -140,13 +174,20 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   progressTitle: {
-    fontSize: 20,
+    fontSize: 25,
     fontWeight: "bold",
     textAlign: "center",
   },
   cardParagraph: {
     textAlign: "center",
     marginBottom: 6,
+    fontStyle:"italic",
+  },
+  cardTParagraph: {
+    textAlign: "center",
+    marginBottom: 6,
+    fontSize: 30,
+    color: "#81B622"
   },
 });
 
