@@ -28,10 +28,23 @@ export default function App() {
     //setStartCamera(false)
     setCapturedImage(photo)
   }
-  const __savePhoto = () => {
+  const __savePhoto = async () => {
     // send photo to the backend
+  //   const photoDirectory = `${FileSystem.documentDirectory}photos/`;
+  //   await FileSystem.makeDirectoryAsync(photoDirectory, { intermediates: true });
 
-  }
+  // // Generate a unique file name for the saved photo
+  //   const fileName = `${Date.now()}.jpg`;
+
+  // // Construct the URI for the saved photo
+  //   const savedPhotoUri = `${photoDirectory}${fileName}`;
+
+  // // Move the captured photo to the new location
+  //   await FileSystem.moveAsync({
+  //   from: capturedImage.uri,
+  //   to: savedPhotoUri,
+  // });
+}
 
 
   const __retakePicture = () => {

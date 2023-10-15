@@ -1,83 +1,109 @@
 import React from 'react';
-import { View, StyleSheet, Alert } from 'react-native';
-import { Card, Title, Paragraph, Button } from 'react-native-paper';
-// import { TrashOutline } from 'react-native-heroicons';
-// import { TrashOutline } from 'react-native-heroicons/outline';
+import { StatusBar } from 'expo-status-bar';
+import { Text, View, StyleSheet, Alert } from 'react-native';
+import { Card, Title, Paragraph, ProgressBar, List, Avatar } from 'react-native-paper';
 
-// const DashboardScreen = () => {
 const DashboardScreen = ({ navigation }) => {
+
+  const badges = [
+    {
+      name: 'Eco Champion',
+      description: 'Demonstrate excellent recycling habits.',
+      icon: 'earth',
+    },
+    {
+      name: 'Green Warrior',
+      description: 'Consistently recycle a diverse range of materials.',
+      icon: 'tree',
+    },
+    {
+      name: 'Ocean Protector',
+      description: 'Commitment to reducing plastic waste and promoting ocean conservation.',
+      icon: 'waves',
+    },
+  ];
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerStyle: {
         backgroundColor: '#3D550C',
       },
-      headerTintColor: '#fff', 
-
+      headerTintColor: '#fff',
     });
   }, [navigation]);
+
   return (
     <View style={styles.container}>
-      {/* <Text>test</Text> */}
-      {/* <View style={styles.progressBar}></View> */}
-
-      {/* <View> style={styles.bar}</View> */}
-
       
-      <Card>
+
+      <Card style={styles.card}>
         <Card.Content>
-          {/* <TrashOutline size={24}/> */}
-          <Title>Recycling Bin</Title>
-          <Paragraph>This is a sample recycling bin card.</Paragraph>
+          <Title style={styles.cardTitle}><Text style={{ color: "#3D550C" }}>Green</Text> Tokens</Title>
+          <Paragraph style={styles.cardParagraph}>
+            This is a sample recycling bin card.
+          </Paragraph>
         </Card.Content>
-        <Card.Actions>
-          <Button 
-            mode = 'outlined'
-            style = {{backgroundColor: 'black'}}
-            onPress={() => Alert.alert("Test")}
-           >PressMe</Button>
-        </Card.Actions>
+      </Card>
+      <ProgressBar progress={0.5} color="#fff" visible={true} style={styles.progressBar} />
+      <Card style={styles.card}>
+        <Card.Content>
+          <Title style={styles.cardTitle}>Badges</Title>
+          <List.Section>
+        {badges.map((badge, index) => (
+          <List.Item
+            key={index}
+            title={badge.name}
+            titleStyle={{fontWeight:'bold'}}
+            description={badge.description}
+            left={() => <Avatar.Icon size={58} icon={badge.icon} />}
+          />
+        ))}
+      </List.Section>
+        </Card.Content>
       </Card>
 
-
-      {/* <Card>
-        <Card.Content>
-          <Title>Recycling Bin</Title>
-          <Paragraph>This is a sample recycling bin card.</Paragraph>
-        </Card.Content>
-        <Card.Actions>
-          <Button 
-            mode = 'outlined'
-            style = {{backgroundColor: 'black'}}
-            // color = 'black'
-            onPress={() => Alert.alert("Test")}
-           >PressMe</Button>
-        </Card.Actions>
-      </Card> */}
-      {/* Add more components for recycling statistics, etc. */}
+      <StatusBar style="auto" />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#81B622',
+  
+    backgroundColor: '#81b622',
     flex: 1,
     padding: 16,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  button: {
-    // textAlign: 'center',
-    // color: 'black',
-  },
-  bar: {
-    height: 50,
+  progressBar: {
     width: '100%',
-    backgroundColor: 'blue',
-    borderColor: '#000',
-    borderWidth: 2,
-    borderRadius: 5
-  }
+    height: 10,
+    marginBottom: 20,
+  },
+  card: {
+    maxHeight:500,
+    maxWidth:300,
+    backgroundColor: '#fff',
+    marginBottom: 40,
+    borderRadius: 15,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
+    elevation: 5,
+  },
+  cardTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  cardParagraph: {
+    textAlign: 'center',
+  },
 });
 
 export default DashboardScreen;

@@ -26,8 +26,8 @@ export default function App() {
         {/* <Tab.Screen name="Recycle" /> */}
         {/* <Tab.Screen name="Settings" component={SettingsScreen} options={{tabBarLabel: 'Settings', tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="cog" color={color} size={size} />),  }}/> */}
-        <Tab.Screen name="Profile" component={ProfileScreen} options={{tabBarLabel: 'Profile', tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="account" color={color} size={size} />),  }}/>
+        {/* <Tab.Screen name="Profile" component={ProfileScreen} options={{tabBarLabel: 'Profile', tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="account" color={color} size={size} />),  }}/> */}
         <Tab.Screen name="Camera" component={ProductClassificationScreen} options={{tabBarLabel: 'Camera', tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="camera" color={color} size={size} />),  }}/>
       </Tab.Navigator>
