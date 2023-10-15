@@ -26,16 +26,19 @@ Our machine learning model is a CNN transfer learning model built on VGG19, a mo
 
 ## 🤔 Challenges we ran into 🤔
 
-Since this was our first time ever training a machine learning model, we initially decided to train our model directly on Kaggle, where we had access to cloud GPUs. Unfortunately, we realized that we could not actually download our model! We also ran into issues in terms of figuring out how to implement our machine learning model into our backend code so that we could actually run it to classify new images that it has not seen before.
+Since this was our first time ever training a machine learning model, we initially decided to train our model directly on Kaggle, where we had access to cloud GPUs. Unfortunately, we realized that we could not actually download our model! We also ran into issues in terms of figuring out how to implement our machine learning model into our backend code so that we could actually run it to classify new images that it has not seen before. Since we did not have unlimited processing power, training the model also took significant time.
 
 For some of our team members, this project marked their first experience with React Native and Flask. This added another layer of complexity to the development process as they were learning and adapting to these technologies on the fly. 
 
 ## 🏆 Accomplishments that we're proud of 🏆
 
-Despite our team's limited experience in mobile app development, we are proud to have successfully created a functional and aesthetically pleasing UI.
+Despite our team's limited experience in mobile app development, we are proud to have successfully created a functional and aesthetically pleasing UI. We are also extremely proud to say that our machine learning model is able to identify recyclable materials to a fairly high percentage of accuracy.
 
 ## 🤓 What we learned 🤓
 
+Our team was split into 3 separate roles: frontend, backend and machine learning model. All of our members decided to work with a Framework that they had not used before, or develop something completely brand new. Specifically, one of our members spent many hours researching machine learning models, before being able to implement, and connect our own model to the backend of our project. Other members had the opportunity to experience the mobile app development process. Overall, each member of the team was able to learn something new from this project.
+
 ## 👀 What's next for PlanetPal 👀
 
-We are currently looking at ways to incentivize users to consistently recycle. Implementing actual challenges such as recycling a certain amount of materials each month, or a daily streak mechanism would help users stay engaged.
+We are currently looking at ways to incentivize users to consistently recycle. Implementing actual challenges such as recycling a certain amount of materials each month, or a daily streak mechanism would help users stay engaged. In order to improve our application, a database containing usernames, emails, and tokens would help this app be more accessible on multiple platforms. Another aspect we are considering is optimizing the app's interface for various screen sizes, ensuring a seamless user experience whether they're accessing it from a smartphone, tablet, or other mobile devices.
+
