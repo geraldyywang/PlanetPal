@@ -55,7 +55,7 @@ def generate_advice(classified):
 
 @app.get("/")
 def home():
-    return "Hello World"
+    return jsonify({"msg": "Hello World"})
 
 
 @app.route("/login", methods=["POST"])
@@ -89,6 +89,7 @@ def predict():
 
             class_name = class_names[class_index]
             certainty = prediction[0][class_index] * 100
+            print(certainty)
 
             # return jsonify({"type": class_name, "certainty": certainty})
     except Exception as e:
@@ -107,14 +108,27 @@ def userProgress():
 
 @app.route("/user/getrecycle", methods=["GET"])
 def recycleCount():
-    return jsonify({"progress": usr.getRecycledCount()})
+    return jsonify({"recycled-count": usr.getRecycledCount()})
 
 
 @app.route("/user/gettokens", methods=["GET"])
 def calculateTokens():
-    return jsonify({"progress": usr.calculateTokens()})
+    return jsonify({"tokens": usr.calculateTokens()})
+
+
+# Testing only
+# @app.route("/increment", methods=["GET"])
+# def incrementTest():
+#     usr.incrementRecycleCount()
+#     return jsonify(
+#         {
+#             "tokens": usr.calculateTokens(),
+#             "recycled-count": usr.getRecycledCount(),
+#             "progress": usr.getProgress(),
+#         }
+#     )
 
 
 if __name__ == "__main__":
-    # app.run(debug=True)
-    generate_advice("plastic")
+    app.run(debug=True)
+    # generate_advice("plastic")
