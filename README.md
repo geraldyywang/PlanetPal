@@ -1,4 +1,4 @@
-# PlanetPal
+
 ![planetpallogo](https://github.com/markestiller/PlanetPal/assets/117526873/c1d0a4f5-9b52-4377-9459-f24fadc74491)
 
 ## 🖥️ Tech Stack 🖥️
