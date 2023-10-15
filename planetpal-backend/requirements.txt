@@ -2,3 +2,5 @@ flask
 flask_restful
 tensorflow
 python-dotenv
+cohere
+numpy
