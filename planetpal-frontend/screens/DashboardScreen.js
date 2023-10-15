@@ -16,21 +16,22 @@ const DashboardScreen = ({ navigation }) => {
   const [tokens, setTokens] = useState(0.0);
 
   useEffect(() => {
-    fetch("http://100.101.129.99:5000/user/progress").then((response) => {
+    fetch("http://192.168.137.4:5000/user/progress").then((response) => {
       return response.json();
     })
     .then((resdata) => {
+      // alert(resdata.progress)
       setCurrentProgress(resdata.progress);
     });
 
-    fetch("http://100.101.129.99:5000/user/getrecycled").then((response) => {
+    fetch("http://192.168.137.4:5000/user/getrecycle").then((response) => {
       return response.json();
     })
     .then((resdata) => {
-      setCurrentNumRecycled(resdata[recycled-count]);
+      setCurrentNumRecycled(resdata.recycledcount);
     });
 
-    fetch("http://100.101.129.99:5000/user/gettokens").then((response) => {
+    fetch("http://192.168.137.4:5000/user/gettokens").then((response) => {
       return response.json();
     })
     .then((resdata) => {

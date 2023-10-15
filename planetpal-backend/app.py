@@ -1,9 +1,7 @@
 from flask import Flask, jsonify, request
 import joblib
 import numpy as np
-from PIL import Image
 import keras
-import cv2
 from keras.preprocessing.image import load_img, img_to_array
 from keras.applications.vgg19 import preprocess_input, decode_predictions
 import numpy as np
@@ -26,6 +24,7 @@ usr = user.User(True)  # Assume user has already paid
 def preprocess_image(image):
     img = img_to_array(image)
     img = img.reshape(1, img.shape[0], img.shape[1], img.shape[2])
+    img = preprocess_input(img)
 
     return img
 
@@ -47,7 +46,7 @@ def generate_advice(classified):
     )  # We do not want too many variations on how to properly recycle
     print(response)
 
-    return response.generations[0].text
+    return response
 
 
 """------------------API routes-----------------------"""
@@ -82,6 +81,8 @@ def predict():
             )
             preprocessed_image = preprocess_image(image)
 
+            print("image preprocessed")
+
             # Make a prediction using the model
             prediction = model.predict(preprocessed_image)
             class_names = ["cardboard", "glass", "metal", "paper", "plastic", "trash"]
@@ -108,7 +109,7 @@ def userProgress():
 
 @app.route("/user/getrecycle", methods=["GET"])
 def recycleCount():
-    return jsonify({"recycled-count": usr.getRecycledCount()})
+    return jsonify({"recycledcount": usr.getRecycledCount()})
 
 
 @app.route("/user/gettokens", methods=["GET"])
@@ -117,18 +118,18 @@ def calculateTokens():
 
 
 # Testing only
-# @app.route("/increment", methods=["GET"])
-# def incrementTest():
-#     usr.incrementRecycleCount()
-#     return jsonify(
-#         {
-#             "tokens": usr.calculateTokens(),
-#             "recycled-count": usr.getRecycledCount(),
-#             "progress": usr.getProgress(),
-#         }
-#     )
+@app.route("/increment", methods=["GET"])
+def incrementTest():
+    usr.incrementRecycleCount()
+    return jsonify(
+        {
+            "tokens": usr.calculateTokens(),
+            "recycled-count": usr.getRecycledCount(),
+            "progress": usr.getProgress(),
+        }
+    )
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="100.101.131.99")
+    app.run(debug=True, host="192.168.137.4")
     # generate_advice("plastic")

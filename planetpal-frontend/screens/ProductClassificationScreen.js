@@ -53,15 +53,16 @@ export default function App({ navigation }) {
       });
   
       try {
-        const response = await axios.post('http://100.101.129.99:5000/predict', formData, {
+        const response = await axios.post("http://192.168.137.4:5000/predict", formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         });
   
         // Handle the response from the backend as needed
-        console.log('Backend response:', response.data);
-        setCohereGenerated(response.cohere.generations[0].text)
+        // console.log('Backend response:', response.data);
+        console.log(response.data);
+        setCohereGenerated(response.cohere.data.generations[0].text)
         Alert.alert(
           'Practice proper recycling!',
           {cohereGenerated},
