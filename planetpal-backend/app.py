@@ -2,6 +2,12 @@ from flask import Flask, jsonify, request
 import joblib
 import numpy as np
 from PIL import Image
+import keras
+import cv2
+from keras.preprocessing.image import load_img, img_to_array
+from keras.applications.vgg19 import preprocess_input, decode_predictions
+import numpy as np
+import user
 
 import cohere
 import os
@@ -9,30 +15,43 @@ import os
 
 app = Flask(__name__)
 
-# Pre-trained image classification model
-# model = joblib.load("models\model_joblib.pkl")
+# Our image classification model
+model = keras.models.load_model("models/my_model.keras")
+
+# Our user instance (for demo sake, for a final product we would aim to support multiple users)
+usr = user.User(True)  # Assume user has already paid
+
 
 # Function to pre-process the image
 def preprocess_image(image):
-    pass
+    img = img_to_array(image)
+    img = img.reshape(1, img.shape[0], img.shape[1], img.shape[2])
+
+    return img
+
 
 # Function (implements Cohere) to generate advice on proper recycling, specific to the object's material
-cohere_api_key=os.environ.get("COHERE_API_KEY")
+cohere_api_key = os.environ.get("COHERE_API_KEY")
+
+
 def generate_advice(classified):
     co = cohere.Client(cohere_api_key)
-    prompt = "Give me an ordered list of under 3 steps on how to recycle my " + classified + "waste. Limit to one short sentence each point."
+    prompt = (
+        "Give me an ordered list of under 3 steps on how to recycle my "
+        + classified
+        + "waste. Limit to one short sentence each point."
+    )
 
-    response = co.generate(  
-        model='command-nightly',  
-        prompt = prompt,  
-        max_tokens = 300,
-        temperature=0.2) # We do not want too many variations on how to properly recycle 
+    response = co.generate(
+        model="command-nightly", prompt=prompt, max_tokens=300, temperature=0.2
+    )  # We do not want too many variations on how to properly recycle
     print(response)
 
     return response.generations[0].text
 
 
 """------------------API routes-----------------------"""
+
 
 @app.get("/")
 def home():
@@ -52,40 +71,49 @@ def login():
 
 
 # once the picture is taken, call this API endpoint
-@app.route(
-    "/predict", methods=["POST"]
-)
+@app.route("/predict", methods=["POST"])
 def predict():
-    
     try:
-        image_file = request.files['image']
+        image_file = request.files["image"]
         if image_file:
-            image = Image.open(image_file)
+            image = load_img(
+                image_file,
+                target_size=(224, 224),
+            )
             preprocessed_image = preprocess_image(image)
 
-             # Make a prediction using the model
-            prediction = model.predict()
-            
-            # Assuming you have a list of class labels, get the most likely class
-            class_labels = ["cardboard", "glass", "metal", "paper", "plastic", "trash"]  # Replace with your actual class labels
-            predicted_class = class_labels[np.argmax(prediction)]
+            # Make a prediction using the model
+            prediction = model.predict(preprocessed_image)
+            class_names = ["cardboard", "glass", "metal", "paper", "plastic", "trash"]
+            class_index = np.argmax(prediction)
+
+            class_name = class_names[class_index]
+            certainty = prediction[0][class_index] * 100
+
+            # return jsonify({"type": class_name, "certainty": certainty})
     except Exception as e:
         return jsonify({"error": str(e)})
-    
+
+    usr.incrementRecycleCount()
     # We want to send the proper recycling advice back to the frontend to be displayed
-    generate_advice(predicted_class)
-
-# class UserController(Resource):
-#     def get(self):
-#         args = user_login_args.parse_args()
-#         return {"data": args}
-
-#     def put(self, uid):
-#         args = user_login_args.parse_args()
-#         return {uid: args}
+    return jsonify({"cohere": generate_advice(class_name)})
 
 
-# api.add_resource(UserController, "/authenticate/<int:uid>")
+# User endpoints
+@app.route("/user/progress", methods=["GET"])
+def userProgress():
+    return jsonify({"progress": usr.getProgress()})
+
+
+@app.route("/user/getrecycle", methods=["GET"])
+def recycleCount():
+    return jsonify({"progress": usr.getRecycledCount()})
+
+
+@app.route("/user/gettokens", methods=["GET"])
+def calculateTokens():
+    return jsonify({"progress": usr.calculateTokens()})
+
 
 if __name__ == "__main__":
     # app.run(debug=True)
