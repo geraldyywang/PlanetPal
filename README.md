@@ -26,7 +26,7 @@ Our machine learning model is a CNN transfer learning model built on VGG19, a mo
 
 ## 🤔 Challenges we ran into 🤔
 
-Since this was our first time ever training a machine learning model, we initially decided to train our model directly on Kaggle, where we had access to cloud GPUs. Unfortunately, we realized that we could not actually download our model! We also ran into issues in terms of figuring out how to implement our machine learning model into our backend code so that we could actually run it to classify new images that it has not seen before.
+Since this was our first time ever training a machine learning model, we initially decided to train our model directly on Kaggle, where we had access to cloud GPUs. Unfortunately, we realized that we could not actually download our model! We also ran into issues in terms of figuring out how to implement our machine learning model into our backend code so that we could actually run it to classify new images that it has not seen before. Since we did not have unlimited processing power, training the model also took significant time.
 
 For some of our team members, this project marked their first experience with React Native and Flask. This added another layer of complexity to the development process as they were learning and adapting to these technologies on the fly. 
 
@@ -38,4 +38,5 @@ Despite our team's limited experience in mobile app development, we are proud to
 
 ## 👀 What's next for PlanetPal 👀
 
-We are currently looking at ways to incentivize users to consistently recycle. Implementing actual challenges such as recycling a certain amount of materials each month, or a daily streak mechanism would help users stay engaged.
+We are currently looking at ways to incentivize users to consistently recycle. Implementing actual challenges such as recycling a certain amount of materials each month, or a daily streak mechanism would help users stay engaged. In order to improve our application, a database containing usernames, emails, and tokens would help this app be more accessible on multiple platforms. Another aspect we are considering is optimizing the app's interface for various screen sizes, ensuring a seamless user experience whether they're accessing it from a smartphone, tablet, or other mobile devices.
+
