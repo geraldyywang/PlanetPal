@@ -17,9 +17,10 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-      screenOptions={{
-          activeTintColor: 'black', // Color of the selected tab label
+      tabBarOptions={{
+          activeTintColor: 'green', // Color of the selected tab label
           inactiveTintColor: 'gray', // Color of the inactive tab label
+          style: { backgroundColor: '#2F0601'},
         }}>
         <Tab.Screen name="Dashboard" component={DashboardScreen} options={{tabBarLabel: 'Dashboard', tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />),  }}/>

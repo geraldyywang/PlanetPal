@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Text, View, StyleSheet, Alert } from 'react-native';
+import { Text, View, StyleSheet, Alert, Dimensions } from 'react-native';
 import { Card, Title, Paragraph, ProgressBar, List, Avatar } from 'react-native-paper';
 
 const DashboardScreen = ({ navigation }) => {
@@ -16,17 +16,21 @@ const DashboardScreen = ({ navigation }) => {
       description: 'Consistently recycle a diverse range of materials.',
       icon: 'tree',
     },
+  ];
+
+  const badges2 = [
     {
       name: 'Ocean Protector',
       description: 'Commitment to reducing plastic waste and promoting ocean conservation.',
       icon: 'waves',
     },
-  ];
+  ]
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerStyle: {
-        backgroundColor: '#3D550C',
+        // backgroundColor: '#3D550C',
+        backgroundColor: '#59981A'
       },
       headerTintColor: '#fff',
     });
@@ -39,12 +43,13 @@ const DashboardScreen = ({ navigation }) => {
       <Card style={styles.card}>
         <Card.Content>
           <Title style={styles.cardTitle}><Text style={{ color: "#3D550C" }}>Green</Text> Tokens</Title>
+          <Title style={styles.progressTitle}>Green Challenge Progress</Title><Text style={styles.cardParagraph}>October 2023</Text>
+          <ProgressBar progress={0.2} color="#81b622" visible={true} style={styles.progressBar} />
           <Paragraph style={styles.cardParagraph}>
-            This is a sample recycling bin card.
+            WALLALALAa
           </Paragraph>
         </Card.Content>
       </Card>
-      <ProgressBar progress={0.5} color="#fff" visible={true} style={styles.progressBar} />
       <Card style={styles.card}>
         <Card.Content>
           <Title style={styles.cardTitle}>Badges</Title>
@@ -58,6 +63,15 @@ const DashboardScreen = ({ navigation }) => {
             left={() => <Avatar.Icon size={58} icon={badge.icon} />}
           />
         ))}
+        {badges2.map((badge, index) => (
+          <List.Item
+            key={index}
+            title={badge.name}
+            titleStyle={{fontWeight:'bold'}}
+            description={badge.description}
+            left={() => <Avatar.Icon size={58} icon={badge.icon} style={{backgroundColor: '#cccccc'}}/>}
+          />
+        ))}
       </List.Section>
         </Card.Content>
       </Card>
@@ -69,21 +83,20 @@ const DashboardScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-  
-    backgroundColor: '#81b622',
+    backgroundColor: '#46250A',
     flex: 1,
     padding: 16,
     justifyContent: 'center',
     alignItems: 'center',
   },
   progressBar: {
-    width: '100%',
-    height: 10,
-    marginBottom: 20,
+    alignItems: 'center',
+    height: 30,
+    marginBottom: 10,
   },
   card: {
     maxHeight:500,
-    maxWidth:300,
+    width: Dimensions.get('window').width*0.8,
     backgroundColor: '#fff',
     marginBottom: 40,
     borderRadius: 15,
@@ -97,12 +110,18 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   cardTitle: {
-    fontSize: 24,
+    fontSize: 30,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  progressTitle: {
+    fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
   },
   cardParagraph: {
     textAlign: 'center',
+    marginBottom: 6
   },
 });
 

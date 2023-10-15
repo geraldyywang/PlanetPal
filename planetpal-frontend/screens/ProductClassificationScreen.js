@@ -5,12 +5,20 @@ import {Camera} from 'expo-camera'
 import * as FileSystem from 'expo-file-system';
 
 let camera
-export default function App() {
-  const [startCamera, setStartCamera] = React.useState(false)
+
+export default function App({ navigation }) {
+  const [startCamera, setStartCamera] = React.useState(true)
   const [previewVisible, setPreviewVisible] = React.useState(false)
   const [capturedImage, setCapturedImage] = React.useState(null)
   const [cameraType, setCameraType] = React.useState(Camera.Constants.Type.back)
   const [flashMode, setFlashMode] = React.useState('off')
+
+  navigation.setOptions({
+    headerStyle: {
+      backgroundColor: '#3D550C', // Set your desired green color
+    },
+    headerTintColor: '#fff',
+  });
 
   const __startCamera = async () => {
     const {status} = await Camera.requestCameraPermissionsAsync()
