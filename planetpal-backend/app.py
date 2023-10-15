@@ -1,7 +1,9 @@
-from flask import Flask, request
+from flask import Flask, jsonify, request
+import joblib
 
 
 app = Flask(__name__)
+model = joblib.load("models\model_joblib")
 
 
 @app.get("/")
@@ -9,11 +11,23 @@ def home():
     return "Hello World"
 
 
-@app.post("/api/login")
-def check_user():
+@app.route("/login", methods=["POST"])
+def login():
     data = request.get_json()
-    username = data["username"]
-    password = data["password"]
+    username = data.get("username")
+    password = data.get("password")
+
+    if username == "bob" and password == "joe":
+        return jsonify({"message": "Login successful"}), 200
+
+    return jsonify({"message": "Invalid username or password"}), 401
+
+
+@app.route(
+    "/predict",
+)
+def predict():
+    pass
 
 
 # class UserController(Resource):
