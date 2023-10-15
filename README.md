@@ -12,7 +12,7 @@ According to the City of Toronto, "contaminated recycling is currently costing t
 
 ## ? What is PlanetPal ?
 
-PlanetPal is a gamified recycling app that is designed to promote good recycling habits and spread more awareness about recycling correctly. Users subscribe to the app monthly, paying upwards of $10 per month, where every time they recycle, they build progress to recovering the money put towards their description. When the user completes a threshold of recycling per month, not only are they refunded their money, but are also awarded with a limited monthly challenge badge that displays their dedication to the environment. Users are given recycling instructions when they take a picture of their trash, their trash is classified with a CNN into 6 categories. The user is then told how to recycle the item that they are holding. After disposing of the item, the user gains progress towards the monthly challenge.
+PlanetPal is a gamified recycling app that is designed to promote good recycling habits and spread more awareness about recycling correctly. Users subscribe to the app monthly, paying upwards of $10 per month, where every time they recycle, they build progress to recovering the money put towards their description. Everytime the user recyles something, they earn Green tokens (our exclusive currency), which can be redeemed for real world money. Furthermore, completing monthly challenges and consistently recycling awards users with a limited monthly challenge badge that displays their dedication to the environment. By collecting these badges, users will have the opportunity to earn even more tokens! Users are given recycling instructions when they take a picture of their trash, their trash is classified with a CNN into 6 categories. The user is then told how to recycle the item that they are holding. After disposing of the item, the user gains progress towards the monthly challenge, as well as tokens.
 
 ## 🔧 How we built it 🔧
 
@@ -35,3 +35,5 @@ Despite our team's limited experience in mobile app development, we are proud to
 ## 🤓 What we learned 🤓
 
 ## 👀 What's next for PlanetPal 👀
+
+We are currently looking at ways to incentivize users to consistently recycle. Implementing actual challenges such as recycling a certain amount of materials each month, or a daily streak mechanism would help users stay engaged.
