@@ -32,9 +32,11 @@ For some of our team members, this project marked their first experience with Re
 
 ## 🏆 Accomplishments that we're proud of 🏆
 
-Despite our team's limited experience in mobile app development, we are proud to have successfully created a functional and aesthetically pleasing UI.
+Despite our team's limited experience in mobile app development, we are proud to have successfully created a functional and aesthetically pleasing UI. We are also extremely proud to say that our machine learning model is able to identify recyclable materials to a fairly high percentage of accuracy.
 
 ## 🤓 What we learned 🤓
+
+Our team was split into 3 separate roles: frontend, backend and machine learning model. All of our members decided to work with a Framework that they had not used before, or develop something completely brand new. Specifically, one of our members spent many hours researching machine learning models, before being able to implement, and connect our own model to the backend of our project. Other members had the opportunity to experience the mobile app development process. Overall, each member of the team was able to learn something new from this project.
 
 ## 👀 What's next for PlanetPal 👀
 
