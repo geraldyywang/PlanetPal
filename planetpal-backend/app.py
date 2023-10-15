@@ -130,5 +130,5 @@ def calculateTokens():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="100.101.129.99")
     # generate_advice("plastic")
