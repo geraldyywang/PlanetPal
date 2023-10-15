@@ -18,7 +18,7 @@ reconstruct = keras.models.load_model(
 )
 
 img = load_img(
-    "C:/Code/PlanetPal/planetpal-backend/assets/test5.jpg",
+    "C:/Code/PlanetPal/planetpal-backend/assets/test2.jpg",
     target_size=(224, 224),
 )
 img = img_to_array(img)
