@@ -1,6 +1,6 @@
 # PlanetPal
 
-##🖥️ Tech Stack 🖥️
+## 🖥️ Tech Stack 🖥️
 Built with ❤️ &
 
 css3 express git html5 mongodb react tailwind
@@ -15,10 +15,16 @@ PlanetPal is a gamified recycling app that is designed to promote good recycling
 
 ## 🔧 How we built it 🔧
 
+Our front end mobile application is developed with React Native and Expo, using packages such as React Native Paper to speed up the development process. Additionally, we used React Navigation for smooth UI transitions, and Expo Camera to take photos.
 
+Our back end is built with Python and Flask, which hosts our CNN that classifies images of trash into 6 different categories. We manage the player's progress, badges, and in-game currency, as well as classfy the images passed from the front end mobile app.
+
+Our machine learning model is a CNN transfer learning model built on VGG19, a model trained on ImageNet. We used a Kaggle dataset, Garbage Classification, to train the VGG19 model and fine tune it. Our model classifies images correctly at around 82.31%!
 
 
 ## 🤔 Challenges we ran into 🤔
+
+Since this was our first time ever training a machine learning model, we initially decided to train our model directly on Kaggle, where we had access to cloud GPUs. Unfortunately, we realized that we could not actually download our model! We also ran into issues in terms of figuring out how to implement our machine learning model into our backend code so that we could actually run it to classify new images that it has not seen before.
 
 ## 🏆 Accomplishments that we're proud of 🏆
 
