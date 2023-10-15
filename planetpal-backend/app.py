@@ -1,10 +1,34 @@
 from flask import Flask, jsonify, request
 import joblib
+import numpy as np
+from PIL import Image
+
+import cohere
+import os
 
 
 app = Flask(__name__)
+
+# Pre-trained image classification model
 model = joblib.load("models\model_joblib")
 
+# Function to pre-process the image
+def preprocess_image(image):
+    pass
+
+# Function (implements Cohere) to generate advice on proper recycling, specific to the object's material
+cohere_api_key=os.environ.get("COHERE_API_KEY")
+def generate_advice(classified):
+    co = cohere.Client(cohere_api_key)
+    prompt = "Give me an ordered list of under 5 steps on how to recycle my " + classified + "waste. Be clear and concise on each point."
+
+    response = co.generate(  
+        model='command-nightly',  
+        prompt = prompt,  
+        # max_tokens = 200
+        temperature=0.2) # We do not want too many variations on how to properly recycle 
+
+    return response.generations[0].text
 
 @app.get("/")
 def home():
@@ -23,13 +47,30 @@ def login():
     return jsonify({"message": "Invalid username or password"}), 401
 
 
+# once the picture is taken, call this API endpoint
 @app.route(
-    "/predict",
+    "/predict", methods=["POST"]
 )
 def predict():
-    pass
+    
+    try:
+        image_file = request.files['image']
+        if image_file:
+            image = Image.open(image_file)
+            preprocessed_image = preprocess_image(image)
 
-
+             # Make a prediction using the model
+            prediction = model.predict()
+            
+            # Assuming you have a list of class labels, get the most likely class
+            class_labels = ["cardboard", "glass", "metal", "paper", "plastic", "trash"]  # Replace with your actual class labels
+            predicted_class = class_labels[np.argmax(prediction)]
+    except Exception as e:
+        return jsonify({"error": str(e)})
+    
+    # We want to send the proper recycling advice back to the frontend to be displayed
+    generate_advice(predicted_class)
+    
 # class UserController(Resource):
 #     def get(self):
 #         args = user_login_args.parse_args()
