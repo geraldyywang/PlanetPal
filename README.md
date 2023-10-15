@@ -20,7 +20,7 @@ Our front end mobile application is developed with React Native and Expo, using 
 
 Our back end is built with Python and Flask, which hosts our CNN that classifies images of trash into 6 different categories. We manage the player's progress, badges, and in-game currency, as well as classify the images passed from the front end mobile app. Moreover, the logic behind generating advice on proper recycling lies here, where we passed the classified object into Cogenerate's command-nightly generative AI model.
 
-Our machine learning model is a CNN transfer learning model built on VGG19, a model trained on ImageNet. We chose to build on VGG19 in the interest of time, while guaranteeing relatively high accuracy. We used a Kaggle dataset, Garbage Classification, to train the VGG19 model and fine tune it. Our model classifies images correctly at around 82.31%!
+Our machine learning model is a CNN transfer learning model built on VGG19, a model trained on ImageNet. We chose to build on VGG19 in the interest of time, while guaranteeing relatively high accuracy. We used a Kaggle dataset, ![Garbage Classification](https://www.kaggle.com/datasets/asdasdasasdas/garbage-classification), to train the VGG19 model and fine tune it. Our model classifies images correctly at around 82.31%!
 
 ![traintest](https://github.com/markestiller/PlanetPal/assets/117526873/4e3cc498-c984-4c5b-8030-dc684c5c2e0d)
 
