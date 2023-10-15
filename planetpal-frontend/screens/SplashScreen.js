@@ -4,9 +4,9 @@ import { Text,View, Image, StyleSheet } from 'react-native';
 const SplashScreen = () => {
   return (
     <View style={styles.container}>
-    <Image style={{paddingBottom:20}} source={require('../assets/download.jpg')} />
-      <Text style={{fontSize:40,padding:20,color:"#eb5850"}}>PlanetPal</Text>
-      <Text style={{fontSize:15,textAlign:'center',color:"#eb5850"}}>Your Recycling Companion</Text>
+    <Image style={{paddingBottom:1, alignItems: 'center'}} source={require('../assets/Paucek_and_Lage.png')} />
+      <Text style={{fontSize:40,padding:20,color:"black"}}>PlanetPal</Text>
+      <Text style={{fontSize:15,textAlign:'center',color:"black"}}>Your Recycling Companion</Text>
     </View>
   )
 };

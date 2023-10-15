@@ -29,8 +29,7 @@ const DashboardScreen = ({ navigation }) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerStyle: {
-        // backgroundColor: '#3D550C',
-        backgroundColor: '#59981A'
+        backgroundColor: '#3D550C'
       },
       headerTintColor: '#fff',
     });
@@ -45,9 +44,9 @@ const DashboardScreen = ({ navigation }) => {
           <Title style={styles.cardTitle}><Text style={{ color: "#3D550C" }}>Green</Text> Tokens</Title>
           <Title style={styles.progressTitle}>Green Challenge Progress</Title><Text style={styles.cardParagraph}>October 2023</Text>
           <ProgressBar progress={0.2} color="#81b622" visible={true} style={styles.progressBar} />
-          <Paragraph style={styles.cardParagraph}>
+          {/* <Paragraph style={styles.cardParagraph}>
             WALLALALAa
-          </Paragraph>
+          </Paragraph> */}
         </Card.Content>
       </Card>
       <Card style={styles.card}>
@@ -83,7 +82,7 @@ const DashboardScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#46250A',
+    backgroundColor: '#81B622',
     flex: 1,
     padding: 16,
     justifyContent: 'center',

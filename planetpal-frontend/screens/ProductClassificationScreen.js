@@ -2,7 +2,9 @@ import {StatusBar} from 'expo-status-bar'
 import React from 'react'
 import {StyleSheet, Text, View, TouchableOpacity, Alert, ImageBackground, Image} from 'react-native'
 import {Camera} from 'expo-camera'
-import * as FileSystem from 'expo-file-system';
+// import * as FileSystem from 'expo-file-system';
+import axios from 'axios'
+
 
 let camera
 
@@ -36,7 +38,36 @@ export default function App({ navigation }) {
     //setStartCamera(false)
     setCapturedImage(photo)
   }
+
   const __savePhoto = async () => {
+    if (capturedImage) {
+      // Create a FormData object to send the image file
+      const formData = new FormData();
+      formData.append('photo', {
+        uri: capturedImage.uri,
+        type: 'image/jpeg', // Adjust the type based on your image type
+        name: 'photo.jpg', // Adjust the name based on your requirements
+      });
+  
+      try {
+        // Replace 'YOUR_BACKEND_API_URL' with the actual URL of your backend API
+        const response = await axios.post('YOUR_BACKEND_API_URL', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+  
+        // Handle the response from the backend as needed
+        console.log('Backend response:', response.data);
+      } catch (error) {
+        // Handle errors
+        console.error('Error sending photo to the backend:', error.message);
+      }
+    }
+  };
+
+  
+  // const __savePhoto = async () => {
     // send photo to the backend
   //   const photoDirectory = `${FileSystem.documentDirectory}photos/`;
   //   await FileSystem.makeDirectoryAsync(photoDirectory, { intermediates: true });
@@ -52,7 +83,7 @@ export default function App({ navigation }) {
   //   from: capturedImage.uri,
   //   to: savedPhotoUri,
   // });
-}
+// }
 
 
   const __retakePicture = () => {
