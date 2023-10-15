@@ -10,7 +10,7 @@ import os
 app = Flask(__name__)
 
 # Pre-trained image classification model
-model = joblib.load("models\model_joblib")
+# model = joblib.load("models\model_joblib.pkl")
 
 # Function to pre-process the image
 def preprocess_image(image):
@@ -20,15 +20,19 @@ def preprocess_image(image):
 cohere_api_key=os.environ.get("COHERE_API_KEY")
 def generate_advice(classified):
     co = cohere.Client(cohere_api_key)
-    prompt = "Give me an ordered list of under 5 steps on how to recycle my " + classified + "waste. Be clear and concise on each point."
+    prompt = "Give me an ordered list of under 3 steps on how to recycle my " + classified + "waste. Limit to one short sentence each point."
 
     response = co.generate(  
         model='command-nightly',  
         prompt = prompt,  
-        # max_tokens = 200
+        max_tokens = 300,
         temperature=0.2) # We do not want too many variations on how to properly recycle 
+    print(response)
 
     return response.generations[0].text
+
+
+"""------------------API routes-----------------------"""
 
 @app.get("/")
 def home():
@@ -70,7 +74,7 @@ def predict():
     
     # We want to send the proper recycling advice back to the frontend to be displayed
     generate_advice(predicted_class)
-    
+
 # class UserController(Resource):
 #     def get(self):
 #         args = user_login_args.parse_args()
@@ -84,4 +88,5 @@ def predict():
 # api.add_resource(UserController, "/authenticate/<int:uid>")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # app.run(debug=True)
+    generate_advice("plastic")
