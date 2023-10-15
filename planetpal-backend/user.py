@@ -3,7 +3,7 @@ class User:
         self._progress = 0.0
         self._paid = paid
         self._recycled_count = 0
-        self._tokens = 0
+        self._tokens = 0.0
 
     def getRecycledCount(self) -> int:
         return self._recycled_count
@@ -20,7 +20,7 @@ class User:
     def incrementRecycleCount(self, n=1):
         self._recycled_count += n
         if self._progress != 1:
-            self._progress = n * 0.2
+            self._progress = self._recycled_count * 0.2
 
     def setPaid(self, paid=True):
         self._paid = paid
