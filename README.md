@@ -22,6 +22,8 @@ Our back end is built with Python and Flask, which hosts our CNN that classifies
 
 Our machine learning model is a CNN transfer learning model built on VGG19, a model trained on ImageNet. We used a Kaggle dataset, Garbage Classification, to train the VGG19 model and fine tune it. Our model classifies images correctly at around 82.31%!
 
+![traintest](https://github.com/markestiller/PlanetPal/assets/117526873/4e3cc498-c984-4c5b-8030-dc684c5c2e0d)
+
 ## 🤔 Challenges we ran into 🤔
 
 Since this was our first time ever training a machine learning model, we initially decided to train our model directly on Kaggle, where we had access to cloud GPUs. Unfortunately, we realized that we could not actually download our model! We also ran into issues in terms of figuring out how to implement our machine learning model into our backend code so that we could actually run it to classify new images that it has not seen before.
