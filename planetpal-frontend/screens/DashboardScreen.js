@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { Text, View, StyleSheet, Alert, Dimensions } from "react-native";
 import {
@@ -44,6 +44,10 @@ const DashboardScreen = ({ navigation }) => {
     });
   }, [navigation]);
 
+  // useEffect(() => {
+  //   fetch("backend_api/users/progress").then((response)=>{response.json()}).then((data)=>setCurrentProgress(currentProgress + data.progress))
+  // })
+
   return (
     <View style={styles.container}>
       <Card style={styles.card}>
@@ -53,6 +57,7 @@ const DashboardScreen = ({ navigation }) => {
           </Title>
           <Title style={styles.progressTitle}>Green Challenge Progress</Title>
           <Text style={styles.cardParagraph}>October 2023</Text>
+          
           <ProgressBar
             animatedValue={currentProgress}
             color="#81b622"

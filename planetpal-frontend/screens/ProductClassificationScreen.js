@@ -50,8 +50,7 @@ export default function App({ navigation }) {
       });
   
       try {
-        // Replace 'YOUR_BACKEND_API_URL' with the actual URL of your backend API
-        const response = await axios.post('YOUR_BACKEND_API_URL', formData, {
+        const response = await axios.post('/', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
