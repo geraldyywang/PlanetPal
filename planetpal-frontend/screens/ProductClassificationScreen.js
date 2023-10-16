@@ -53,7 +53,8 @@ export default function App({ navigation }) {
       });
   
       try {
-        const response = await axios.post("http://192.168.137.4:5000/predict", formData, {
+        console.log(formData)
+        const response = await axios.post("http://...:5000/predict", formData, { // add your ip after http:// and before :5000/predict
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -61,9 +62,10 @@ export default function App({ navigation }) {
   
         // Handle the response from the backend as needed
         // console.log('Backend response:', response.data);
-        console.log(response.data);
-        setCohereGenerated(response.cohere.data.generations[0].text)
-        Alert.alert(
+        // console.log(response.data);
+        // setCohereGenerated(response.cohere.data.generations[0].text)
+        setCohereGenerated(response.cohere)
+        alert(
           'Practice proper recycling!',
           {cohereGenerated},
           [

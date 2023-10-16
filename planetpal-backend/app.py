@@ -6,9 +6,11 @@ from keras.preprocessing.image import load_img, img_to_array
 from keras.applications.vgg19 import preprocess_input, decode_predictions
 import numpy as np
 import user
+import cv2
 
 import cohere
 import os
+from PIL import Image
 
 
 app = Flask(__name__)
@@ -30,7 +32,7 @@ def preprocess_image(image):
 
 
 # Function (implements Cohere) to generate advice on proper recycling, specific to the object's material
-cohere_api_key = os.environ.get("COHERE_API_KEY")
+cohere_api_key = os.environ.get("COHERE_API_KEY_TWO")
 
 
 def generate_advice(classified):
@@ -73,12 +75,18 @@ def login():
 @app.route("/predict", methods=["POST"])
 def predict():
     try:
-        image_file = request.files["image"]
+        
+        image = request.files['photo']
+        image_file = Image.open(image)
+        image_file.show()
         if image_file:
-            image = load_img(
-                image_file,
-                target_size=(224, 224),
-            )
+            # image = load_img(
+            #     image_file,
+            #     target_size=(224, 224),
+            # )
+            print(image_file)
+            image_file = np.array(image_file)
+            image = cv2.resize(image_file, (224, 224))
             preprocessed_image = preprocess_image(image)
 
             print("image preprocessed")
@@ -90,7 +98,7 @@ def predict():
 
             class_name = class_names[class_index]
             certainty = prediction[0][class_index] * 100
-            print(certainty)
+            print(class_name, certainty)
 
             # return jsonify({"type": class_name, "certainty": certainty})
     except Exception as e:
@@ -98,7 +106,9 @@ def predict():
 
     usr.incrementRecycleCount()
     # We want to send the proper recycling advice back to the frontend to be displayed
-    return jsonify({"cohere": generate_advice(class_name)})
+    # return jsonify({"cohere": generate_advice(class_name)})
+
+    return jsonify({"cohere": class_name})
 
 
 # User endpoints
